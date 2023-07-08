@@ -1,0 +1,45 @@
+package com.homeofficevisa.pages;
+import com.homeofficevisa.utility.Utility;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import java.util.List;
+
+/*
+7.DurationOfStayPage - nextStepButton, lessThanSixMonths, moreThanSixMonths locators
+and create methods
+'void selectLengthOfStay(String moreOrLess)' (Note: use switch statement for select
+moreOrLess stay) and
+'void clickNextStepButton()'
+
+ */
+public class DurationOfStayPage extends Utility {
+
+    By nextStepButton1 = By.cssSelector("button[class='gem-c-button govuk-button gem-c-button--bottom-margin']");
+
+    By lessThanSixMonths = By.cssSelector("#response-0");
+    By moreThanSixMonths = By.cssSelector("#response-1");
+    By selectOption = By.className("govuk-radios");
+
+    public void selectLengthOfStay(String moreOrLess) {
+
+        List<WebElement> option = driver.findElements(selectOption);
+        String s = option.toString();
+        switch (moreOrLess) {
+            case "longer than 6 months":
+                s.equals(moreOrLess);
+                clickOnElement(moreThanSixMonths);
+                break;
+
+
+            default:
+                clickOnElement(lessThanSixMonths);
+                break;
+        }
+
+    }
+
+
+    public void clickNextStepButton1() {
+        clickOnElement(nextStepButton1);
+    }
+}
